@@ -13,20 +13,25 @@ class Persona(models.Model):
     ciudad = models.CharField(max_length=100)
     email = models.EmailField()
     telefono = models.CharField(max_length=20)
-
+    comuna = models.ForeignKey(Comuna, on_delete=models.SET_NULL, null=True)
+    
     class Meta:
         abstract = True
         
 
 # Acá definimos los modelos que heredan de Persona y heredan todos sus campos.
+
+
 class Apoderado(Persona):
-    pass
+     parentezco = models.CharField(max_length=200)
+     fecha_nacimiento = models.DateField()
 
 class Alumno(Persona):
     fecha_nacimiento = models.DateField()
     colegio_origen = models.CharField(max_length=200)
     apoderado = models.ForeignKey(Apoderado, on_delete=models.SET_NULL, null=True)
-    
+    curso = models.ForeignKey('academico.Curso', on_delete=models.CASCADE)
+    identificador_curso = models.CharField(max_length=200)
 
 class Coordinador(Persona):
     fecha_nacimiento = models.DateField()

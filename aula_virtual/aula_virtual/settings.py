@@ -89,8 +89,8 @@ STATICFILES_FINDERS = [
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'aulahospitalaria',
-        'USER': 'bd_aulahospitalaria',
+        'NAME': 'aulasansebastian',
+        'USER': 'admin_bd',
         'PASSWORD': '123123$$fDD',
         'HOST': '38.7.207.89',
         'PORT': '3306',

@@ -17,6 +17,8 @@ class Curso(models.Model):
 
 class Asignatura(models.Model):
     curso = models.ForeignKey(Curso, on_delete=models.CASCADE)
+    alumno = models.ForeignKey('personas.Alumno', on_delete=models.CASCADE)
+    docente = models.ForeignKey('personas.Docente', on_delete=models.CASCADE)
 
 class Material(models.Model):
     titulo = models.CharField(max_length=200)
