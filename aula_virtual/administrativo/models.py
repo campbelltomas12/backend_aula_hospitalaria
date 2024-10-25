@@ -13,7 +13,7 @@ class Matricula(models.Model):
     observaciones = models.TextField()
     sede = models.ForeignKey(Sede, on_delete=models.SET_NULL, null=True)
     alumno = models.ForeignKey('personas.Alumno', on_delete=models.CASCADE)
-    programa_apoyo = models.ForeignKey('programa.ProgramaApoyo', on_delete=models.SET_NULL, null=True)
+    programa_apoyo = models.ForeignKey('programa.ListaProgramaApoyo', on_delete=models.SET_NULL, null=True)
 
 class ProgresoAlumno(models.Model):
     anio = models.IntegerField()
@@ -27,3 +27,14 @@ class NotasAlumno(models.Model):
     asignatura = models.ForeignKey('academico.Asignatura', on_delete=models.CASCADE)
     curso = models.ForeignKey('academico.Curso', on_delete=models.CASCADE)
     alumno = models.ForeignKey('personas.Alumno', on_delete=models.CASCADE)
+
+class AntecedentesFamiliares(models.Model):
+    nombre_padre = models.CharField(max_length=50)
+    fecha_nac_padre = models.DateField()
+    nombre_madre = models.CharField(max_length=50)
+    fecha_nac_madre = models.DateField()
+    convivientes = models.CharField(max_length=50)
+    total_hermanos = models.IntegerField()
+    posicion_familiar = models.IntegerField()
+    alumno = models.ForeignKey('personas.Alumno', on_delete=models.CASCADE)
+    

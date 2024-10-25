@@ -11,10 +11,17 @@ class RegistroClase(models.Model):
     motivo_cierre = models.ForeignKey(MotivoClase, on_delete=models.SET_NULL, null=True)
     docente = models.ForeignKey('personas.Docente', on_delete=models.SET_NULL, null=True)
     
-class RegistroAsignaturaAlumnoDocente(models.Model):
+class RegistroAsignatura(models.Model):
     alumno = models.ForeignKey('personas.Alumno', on_delete=models.CASCADE)
     docente = models.ForeignKey('personas.Docente', on_delete=models.SET_NULL, null=True)
     asignatura = models.ForeignKey('academico.Asignatura', on_delete=models.CASCADE)
+
+class Comuna(models.Model):
+    nombre = models.CharField(max_length=200)
+
+class Region(models.Model):
+     nombre = models.CharField(max_length=200)
+    
     
     
     

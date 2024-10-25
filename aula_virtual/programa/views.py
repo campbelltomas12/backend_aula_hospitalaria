@@ -1,17 +1,17 @@
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .models import Programa, HojaDeVida, Diagnostico
-from .serializers import ProgramaSerializer, HojaDeVidaSerializer, DiagnosticoSerializer
+from .models import ListaProgramaApoyo, HojaDeVida
+from .serializers import ListaProgramaApoyoSerializer, HojaDeVidaSerializer
 
 @api_view(['GET', 'POST'])
 def programa_list(request):
     if request.method == 'GET':
-        programas = Programa.objects.all()
-        serializer = ProgramaSerializer(programas, many=True)
+        programas = ListaProgramaApoyo.objects.all()
+        serializer = ListaProgramaApoyoSerializer(programas, many=True)
         return Response(serializer.data)
     elif request.method == 'POST':
-        serializer = ProgramaSerializer(data=request.data)
+        serializer = ListaProgramaApoyoSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -20,15 +20,15 @@ def programa_list(request):
 @api_view(['GET', 'PUT', 'DELETE'])
 def programa_detail(request, pk):
     try:
-        programa = Programa.objects.get(pk=pk)
+        programa = ListaProgramaApoyo.objects.get(pk=pk)
     except Programa.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
-        serializer = ProgramaSerializer(programa)
+        serializer = ListaProgramaApoyoSerializer(programa)
         return Response(serializer.data)
     elif request.method == 'PUT':
-        serializer = ProgramaSerializer(programa, data=request.data)
+        serializer = ListaProgramaApoyoSerializer(programa, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
@@ -69,36 +69,4 @@ def hoja_de_vida_detail(request, pk):
     elif request.method == 'DELETE':
         hoja_de_vida.delete()
         return Response({"mensaje": f"HojaDeVida ID: {pk} ha sido eliminado correctamente"}, status=status.HTTP_200_OK)
-
-@api_view(['GET', 'POST'])
-def diagnostico_list(request):
-    if request.method == 'GET':
-        diagnosticos = Diagnostico.objects.all()
-        serializer = DiagnosticoSerializer(diagnosticos, many=True)
-        return Response(serializer.data)
-    elif request.method == 'POST':
-        serializer = DiagnosticoSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-@api_view(['GET', 'PUT', 'DELETE'])
-def diagnostico_detail(request, pk):
-    try:
-        diagnostico = Diagnostico.objects.get(pk=pk)
-    except Diagnostico.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-
-    if request.method == 'GET':
-        serializer = DiagnosticoSerializer(diagnostico)
-        return Response(serializer.data)
-    elif request.method == 'PUT':
-        serializer = DiagnosticoSerializer(diagnostico, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    elif request.method == 'DELETE':
-        diagnostico.delete()
-        return Response({"mensaje": f"Diagnostico ID: {pk} ha sido eliminado correctamente"}, status=status.HTTP_200_OK)
+    

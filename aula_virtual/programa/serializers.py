@@ -1,9 +1,9 @@
 from rest_framework import serializers
-from .models import Programa, HojaDeVida, Diagnostico
+from .models import ListaProgramaApoyo, HojaDeVida
 
-class ProgramaSerializer(serializers.ModelSerializer):
+class ListaProgramaApoyoSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Programa
+        model = ListaProgramaApoyo
         fields = '__all__'
 
 class HojaDeVidaSerializer(serializers.ModelSerializer):
@@ -11,9 +11,5 @@ class HojaDeVidaSerializer(serializers.ModelSerializer):
         model = HojaDeVida
         fields = '__all__'
 
-class DiagnosticoSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Diagnostico
-        fields = '__all__'
 
 

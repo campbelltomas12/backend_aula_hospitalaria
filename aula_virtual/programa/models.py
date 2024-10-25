@@ -9,7 +9,3 @@ class HojaDeVida(models.Model):
     observacion = models.TextField()
     alumno = models.OneToOneField('personas.Alumno', on_delete=models.CASCADE)
 
-class Diagnostico(models.Model):
-    descripcion = models.TextField()
-    estancia = models.CharField(max_length=100)
-    alumno = models.ForeignKey('personas.Alumno', on_delete=models.CASCADE)

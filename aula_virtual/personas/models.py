@@ -13,7 +13,8 @@ class Persona(models.Model):
     ciudad = models.CharField(max_length=100)
     email = models.EmailField()
     telefono = models.CharField(max_length=20)
-    comuna = models.ForeignKey(Comuna, on_delete=models.SET_NULL, null=True)
+    comuna = models.ForeignKey('registro.Comuna', on_delete=models.CASCADE)
+    
     
     class Meta:
         abstract = True
