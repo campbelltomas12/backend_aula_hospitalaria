@@ -21,6 +21,12 @@ class Comuna(models.Model):
 
 class Region(models.Model):
      nombre = models.CharField(max_length=200)
+     
+class ListaHorarioBloque(models.Model):
+      numero_bloque = models.IntegerField()
+      hr_inicio_programado = models.TimeField()
+      hr_termino_programado = models.TimeField()
+    
     
     
     
