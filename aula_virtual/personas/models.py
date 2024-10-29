@@ -9,11 +9,10 @@ class Persona(models.Model):
     apellido_paterno = models.CharField(max_length=100)
     apellido_materno = models.CharField(max_length=100)
     direccion = models.CharField(max_length=200)
-    region = models.CharField(max_length=100)
     ciudad = models.CharField(max_length=100)
     email = models.EmailField()
     telefono = models.CharField(max_length=20)
-    comuna = models.ForeignKey('registro.Comuna', on_delete=models.CASCADE)
+    
     
     
     class Meta:
